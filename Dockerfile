@@ -13,9 +13,8 @@ RUN cd lotus && \
 FROM debian:buster
 RUN apt-get update && apt-get install -y \
   mesa-opencl-icd ca-certificates
-#RUN apt-get update && apt-get install -y \
-#  mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq
 
 COPY --from=build /usr/local/bin/lotus* /usr/local/bin/
+VOLUME /root/.lotus
 ENTRYPOINT ["/usr/local/bin/lotus"]
 CMD ["daemon"]
